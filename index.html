@@ -60,12 +60,21 @@
       border-color: rgba(56,189,248,.45);
       text-decoration: none;
     }
+section{ scroll-margin-top: 88px; }
 
-    header{
-      padding: 56px 18px 44px;
-      border-bottom: 1px solid var(--border);
-      background: radial-gradient(800px 360px at 18% 10%, rgba(56,189,248,.25), transparent 60%);
-    }
+header::after{
+  content:"";
+  position:absolute;
+  inset:-40px -80px;
+  opacity:.18;
+  pointer-events:none;
+  background:
+    radial-gradient(900px 380px at 18% 10%, rgba(56,189,248,.22), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='420' viewBox='0 0 1400 420'%3E%3Cpath d='M0 310 C120 260, 220 340, 360 280 S640 210, 780 240 S1040 330, 1220 200 S1360 160, 1400 180' fill='none' stroke='rgba(255,255,255,0.35)' stroke-width='2'/%3E%3Ccircle cx='360' cy='280' r='4' fill='rgba(56,189,248,0.55)'/%3E%3Ccircle cx='780' cy='240' r='4' fill='rgba(56,189,248,0.55)'/%3E%3Ccircle cx='1220' cy='200' r='4' fill='rgba(56,189,248,0.55)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center 40px;
+  background-size: cover;
+}
     main{
       max-width: var(--max);
       margin: 0 auto;
@@ -192,16 +201,14 @@
 
 <body>
   <!-- MENU -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#wins">Key Wins</a>
-      <a href="#projects">Projects</a>
-      <a href="#sixsigma">Six Sigma</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#projects">Projects</a>
+    <a href="#sixsigma">Six Sigma</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
   <!-- HERO -->
   <header>
@@ -229,6 +236,8 @@
   </header>
 
   <main>
+    <!-- OVERVIEW (About + Skills + Key Wins) -->
+<section id="overview">
     <!-- ABOUT -->
     <section class="card" id="about">
       <h2>About</h2>
@@ -261,7 +270,8 @@
           <li><strong>Implemented a performance scorecard</strong> with clear glidepaths and targets using quartile-based management to drive accountability and sustained improvement.</li>
         </ul>
       </div>
-    </section>
+ </section>
+<!-- END OVERVIEW -->
 
     <!-- PROJECTS -->
     <section id="projects">
