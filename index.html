@@ -16,8 +16,8 @@
       --border: rgba(255,255,255,.10);
       --accent: #38bdf8;
     }
-
     *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
     body{
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
@@ -25,36 +25,62 @@
       background: var(--bg);
       color: var(--text);
     }
+    a{ color: var(--accent); }
+    a:hover{ text-decoration: underline; }
+    .muted{ color: var(--muted); }
+
+    /* NAV */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11,15,26,.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav a{
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      font-size: 14px;
+    }
+    .nav a:hover{
+      border-color: rgba(56,189,248,.45);
+      text-decoration: none;
+    }
 
     header{
       padding: 56px 18px 44px;
       border-bottom: 1px solid var(--border);
       background: radial-gradient(800px 360px at 18% 10%, rgba(56,189,248,.25), transparent 60%);
     }
-
     main{
       max-width: var(--max);
       margin: 0 auto;
       padding: 26px 18px 56px;
     }
-
     h1{
       font-size: 36px;
       margin: 0 0 10px;
       letter-spacing: -0.02em;
     }
-
     .tagline{
       font-size: 18px;
       margin: 0 0 14px;
-      color: var(--text);
       opacity: .95;
     }
-
-    .muted{ color: var(--muted); }
-
-    a{ color: var(--accent); }
-    a:hover{ text-decoration: underline; }
 
     .links{
       margin-top: 14px;
@@ -63,7 +89,6 @@
       gap: 12px;
       align-items: center;
     }
-
     .pill{
       display: inline-block;
       padding: 10px 14px;
@@ -86,13 +111,11 @@
       margin: 14px 0;
       box-shadow: 0 10px 30px rgba(0,0,0,.20);
     }
-
     h2{
       margin: 26px 0 10px;
       font-size: 20px;
       letter-spacing: -0.01em;
     }
-
     ul{ margin: 10px 0 0 18px; }
     li{ margin: 8px 0; }
 
@@ -103,13 +126,6 @@
     }
     @media (min-width: 860px){
       .grid{ grid-template-columns: 1fr 1fr; }
-    }
-
-    footer{
-      border-top: 1px solid var(--border);
-      padding: 18px;
-      text-align: center;
-      color: var(--muted);
     }
 
     /* Photo */
@@ -124,54 +140,118 @@
       margin: 14px 0 10px;
     }
 
-    .hero-row{
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    /* Badges + Six Sigma gallery */
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+    }
+    .badge{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-size: 13px;
+    }
+    .kit-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top: 12px;
+    }
+    @media (min-width: 860px){
+      .kit-grid{ grid-template-columns: 1fr 1fr; }
+    }
+    .figure{
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      background: rgba(255,255,255,.02);
+    }
+    .figure img{
+      width:100%;
+      display:block;
+    }
+    .figure .cap{
+      padding:12px 14px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
     }
   </style>
 </head>
 
 <body>
+  <!-- MENU -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#wins">Key Wins</a>
+      <a href="#projects">Projects</a>
+      <a href="#sixsigma">Six Sigma</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
   <header>
     <main>
-      <div class="hero-row">
-        <h1>Oscar Alejandro Monzon</h1>
+      <h1>Oscar Alejandro Monzon</h1>
+      <img src="profilepicgithub.jpeg" alt="Oscar Alejandro Monzon" class="avatar" />
 
-        <!-- Profile photo (file name is case- & space-sensitive) -->
-        <img src="profilepicgithub.jpeg" alt="Oscar Alejandro Monzon" class="avatar" />
+      <p class="tagline"><strong>Senior Operations Manager | Client Success | Performance & Growth</strong></p>
 
-        <p class="tagline"><strong>Senior Operations Manager | Service Delivery | Client Success | Performance & Growth</strong></p>
+      <p class="muted" style="max-width: 70ch; margin: 0;">
+        I lead multi-channel operations and client success programs, improving KPI performance through data-driven execution,
+        coaching systems, and stakeholder alignment—focused on scalable growth, customer experience, and measurable outcomes.
+      </p>
 
-        <p class="muted" style="max-width: 70ch; margin: 0;">
-     I lead multi-channel operations and client success programs, improving KPI performance through data-driven execution, coaching systems, and stakeholder alignment. 
-          Focused on scalable growth, customer experience, and measurable outcomes.
-        </p>
+      <p class="links">
+        <a class="pill" href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="pill" href="mailto:amonzon.p@gmail.com">Email</a>
+        <a class="pill" href="cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+      </p>
 
-        <p class="links">
-          <a class="pill" href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="pill" href="mailto:amonzon.p@gmail.com">Email</a>
-          <a class="pill" href="cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
-        </p>
-
-        <p class="muted" style="margin: 6px 0 0;">
-          📍Location: Guatemala (Open to Remote)
-        </p>
-      </div>
+      <p class="muted" style="margin: 6px 0 0;">
+        📍 Guatemala (open to remote)
+      </p>
     </main>
   </header>
 
   <main>
-    <section class="card">
+    <!-- ABOUT -->
+    <section class="card" id="about">
       <h2>About</h2>
       <p style="margin: 0;">
-        I’m an Senior Operations & Client Management leader with experience scaling teams, improving customer experience,
+        I’m a Senior Operations & Client Management leader with experience scaling teams, improving customer experience,
         and translating performance data into clear action plans. I build structured coaching and continuous improvement
         systems that align stakeholders, strengthen execution, and deliver measurable results.
       </p>
     </section>
 
-    <section>
+    <!-- SKILLS (moved right after About) -->
+    <section class="card" id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li>Operations Management • Client Success • Stakeholder Management (C-level)</li>
+        <li>Performance Management • Coaching Systems • RCA / Continuous Improvement</li>
+        <li>Dashboards & Reporting • Power BI • Excel / Google Sheets</li>
+        <li>Program Transitions • Cross-functional Leadership • Process Design</li>
+      </ul>
+    </section>
+
+    <!-- KEY WINS -->
+    <section id="wins">
       <h2>Key Wins</h2>
       <div class="card">
         <ul>
@@ -180,12 +260,11 @@
           <li><strong>Launched a “Travel Foundations School”</strong> to increase filling rate and reduce attrition, partnering closely with GDP providers.</li>
           <li><strong>Implemented a performance scorecard</strong> with clear glidepaths and targets using quartile-based management to drive accountability and sustained improvement.</li>
         </ul>
-        <p class="muted" style="margin: 12px 0 0;">
-        </p>
       </div>
     </section>
 
-    <section>
+    <!-- PROJECTS -->
+    <section id="projects">
       <h2>Projects / Case Studies</h2>
       <div class="grid">
         <div class="card">
@@ -201,23 +280,72 @@
           <p style="margin: 0 0 10px;"><strong>Focus:</strong> Increasing fill rate and reducing attrition through structured enablement.</p>
           <p style="margin: 0 0 10px;"><strong>What I did:</strong> Designed and deployed a foundations program with clear standards, practice loops, and feedback cycles.</p>
           <p style="margin: 0 0 10px;"><strong>Partners:</strong> GDP providers + internal teams (WFM, QA, Training).</p>
-          <p style="margin: 0;"><strong>Result:</strong> Improved readiness and stability.</p>
+          <p style="margin: 0;"><strong>Result:</strong> Improved readiness and stability (add metrics when ready).</p>
         </div>
       </div>
     </section>
 
-    <section class="card">
-      <h2>Skills</h2>
-      <ul>
-        <li>Senior Operations Management • Client Success • Stakeholder Management (C-level)</li>
-        <li>Performance Management • Coaching Systems • RCA / Continuous Improvement</li>
-        <li>Yellow Belt Six Sigma • Scrum Master Certified </li>
-        <li>Dashboards & Reporting • Power BI • Excel / Google Sheets</li>
-        <li>Program Transitions • Cross-functional Leadership • Process Design</li>
-      </ul>
+    <!-- SIX SIGMA (placed below Projects) -->
+    <section id="sixsigma">
+      <h2>Operational Excellence | Six Sigma (DMAIC)</h2>
+
+      <div class="card">
+        <p style="margin:0 0 12px;">
+          I apply the <strong>DMAIC methodology</strong> to diagnose performance gaps, prioritize root causes, and implement improvements
+          that are measurable, scalable, and sustainable across teams and processes.
+        </p>
+
+        <div class="badges">
+          <span class="badge">DMAIC</span>
+          <span class="badge">RCA (5 Whys)</span>
+          <span class="badge">Pareto</span>
+          <span class="badge">Histogram</span>
+          <span class="badge">Ishikawa</span>
+          <span class="badge">Scatter / Correlation</span>
+          <span class="badge">Quartile Management</span>
+          <span class="badge">Glidepaths & Scorecards</span>
+        </div>
+
+        <ul style="margin-top:14px;">
+          <li><strong>Define:</strong> Align stakeholders on problem statement, scope, and success metrics.</li>
+          <li><strong>Measure:</strong> Establish baselines and segment performance using KPI dashboards.</li>
+          <li><strong>Analyze:</strong> Identify drivers with Pareto, Ishikawa, scatter/correlation, and distribution analysis.</li>
+          <li><strong>Improve:</strong> Deploy targeted interventions (training, process fixes, coaching routines) and track lift vs baseline.</li>
+          <li><strong>Control:</strong> Sustain improvements with scorecards, glidepaths, governance cadence, and accountability routines.</li>
+        </ul>
+      </div>
+
+      <div class="kit-grid">
+        <div class="figure">
+          <img src="pareto.png" alt="Pareto Chart">
+          <div class="cap"><strong>Pareto:</strong> Prioritize the “vital few” drivers causing most of the impact.</div>
+        </div>
+
+        <div class="figure">
+          <img src="histograma.png" alt="Histogram">
+          <div class="cap"><strong>Histogram:</strong> Understand distribution, variation, and outliers to select the right actions.</div>
+        </div>
+
+        <div class="figure">
+          <img src="fishbone.png" alt="Ishikawa Diagram">
+          <div class="cap"><strong>Ishikawa:</strong> Map root causes across People / Process / Tools / Policy / Environment.</div>
+        </div>
+
+        <div class="figure">
+          <img src="scatter.png" alt="Scatter Plot">
+          <div class="cap"><strong>Scatter:</strong> Validate relationships (e.g., adherence vs AHT, QA vs NPS) and focus improvements.</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <p style="margin:0;" class="muted">
+          This toolkit supports both operational execution and executive storytelling—turning data into decisions.
+        </p>
+      </div>
     </section>
 
-    <section class="card">
+    <!-- CONTACT -->
+    <section class="card" id="contact">
       <h2>Contact</h2>
       <p style="margin: 0 0 8px;">✉️ Email: <a href="mailto:amonzon.p@gmail.com">amonzon.p@gmail.com</a></p>
       <p style="margin: 0;">🔗 LinkedIn: <a href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank" rel="noopener noreferrer">oscar-monzon-pineda</a></p>
