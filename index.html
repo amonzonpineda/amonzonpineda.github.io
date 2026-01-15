@@ -3,49 +3,171 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Alejandro Monzon — Portfolio</title>
-  <meta name="description" content="Operations & Client Management Leader | Portfolio" />
+  <title>Oscar Alejandro Monzon — Portfolio</title>
+  <meta name="description" content="Senior Operations Manager | Client Success | Performance & Growth" />
+
   <style>
-    :root { --max: 900px; }
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; line-height: 1.55; }
-    header { padding: 42px 18px; border-bottom: 1px solid #eee; }
-    main { max-width: var(--max); margin: 0 auto; padding: 26px 18px 56px; }
-    h1 { font-size: 34px; margin: 0 0 6px; }
-    .tagline { font-size: 18px; margin: 0 0 14px; color: #333; }
-    .links a { margin-right: 14px; text-decoration: none; }
-    .card { border: 1px solid #eee; border-radius: 14px; padding: 18px; margin: 14px 0; }
-    h2 { margin: 26px 0 10px; font-size: 20px; }
-    ul { margin: 8px 0 0 18px; }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-    @media (min-width: 860px){ .grid { grid-template-columns: 1fr 1fr; } }
-    .muted { color: #555; }
-    footer { border-top: 1px solid #eee; padding: 18px; text-align: center; color: #666; }
+    :root{
+      --max: 980px;
+      --bg: #0b0f1a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #a1a1aa;
+      --border: rgba(255,255,255,.10);
+      --accent: #38bdf8;
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      line-height: 1.55;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header{
+      padding: 56px 18px 44px;
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(800px 360px at 18% 10%, rgba(56,189,248,.25), transparent 60%);
+    }
+
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 18px 56px;
+    }
+
+    h1{
+      font-size: 36px;
+      margin: 0 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .tagline{
+      font-size: 18px;
+      margin: 0 0 14px;
+      color: var(--text);
+      opacity: .95;
+    }
+
+    .muted{ color: var(--muted); }
+
+    a{ color: var(--accent); }
+    a:hover{ text-decoration: underline; }
+
+    .links{
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .pill{
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      text-decoration: none;
+      color: var(--text);
+    }
+    .pill:hover{
+      border-color: rgba(56,189,248,.45);
+      text-decoration: none;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 14px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,.20);
+    }
+
+    h2{
+      margin: 26px 0 10px;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    ul{ margin: 10px 0 0 18px; }
+    li{ margin: 8px 0; }
+
+    .grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 860px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* Photo */
+    .avatar{
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      display: block;
+      margin: 14px 0 10px;
+    }
+
+    .hero-row{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <main>
-      <h1>Alejandro Monzon</h1>
-      <p class="tagline"><strong>Operations Manager | Client Success | Performance & Growth</strong></p>
-      <p class="muted">
-        I lead multi-channel operations (voice, chat, email), drive KPI performance through data and coaching systems,
-        and build strong executive stakeholder relationships.
-      </p>
-      <p class="links">
-<a href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-<a href="mailto:amonzon.p@gmail.com">Email</a>
-<a href="cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
-      </p>
+      <div class="hero-row">
+        <h1>Oscar Alejandro Monzon</h1>
+
+        <!-- Profile photo (file name is case- & space-sensitive) -->
+        <img src="profilepicgithub.jpeg" alt="Oscar Alejandro Monzon" class="avatar" />
+
+        <p class="tagline"><strong>Senior Operations Manager | Client Success | Performance & Growth</strong></p>
+
+        <p class="muted" style="max-width: 70ch; margin: 0;">
+          I lead multi-channel operations (voice, chat, email), drive KPI performance through data and coaching systems,
+          and build strong executive stakeholder relationships—focused on scalable execution and measurable outcomes.
+        </p>
+
+        <p class="links">
+          <a class="pill" href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="pill" href="mailto:amonzon.p@gmail.com">Email</a>
+          <a class="pill" href="cv.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
+        </p>
+
+        <p class="muted" style="margin: 6px 0 0;">
+          📍 Guatemala (open to remote)
+        </p>
+      </div>
     </main>
   </header>
 
   <main>
     <section class="card">
       <h2>About</h2>
-      <p>
-        I’m an Operations & Client Management leader with experience scaling teams, improving customer experience,
-        and translating performance data into clear action plans. I’m known for building structured coaching and
-        continuous improvement systems that deliver measurable results.
+      <p style="margin: 0;">
+        I’m an Senior Operations & Client Management leader with experience scaling teams, improving customer experience,
+        and translating performance data into clear action plans. I build structured coaching and continuous improvement
+        systems that align stakeholders, strengthen execution, and deliver measurable results.
       </p>
     </section>
 
@@ -53,12 +175,14 @@
       <h2>Key Wins</h2>
       <div class="card">
         <ul>
-          <li>Led multi-channel performance management across voice/chat/email with KPI-driven execution.</li>
-          <li>Built executive-ready dashboards and reporting for visibility, accountability, and action planning.</li>
-          <li>Implemented coaching and quality routines to improve consistency and reduce performance outliers.</li>
-          <li>Managed cross-functional collaboration (WFM, QA, Training, IT, HR) to stabilize delivery and improve outcomes.</li>
+          <li><strong>Drove 35% YoY account growth</strong> for three consecutive years through operational execution and client partnership.</li>
+          <li><strong>Improved NPS performance</strong> by addressing key drivers (process, coaching, and execution consistency) and aligning teams to clear behaviors.</li>
+          <li><strong>Launched a “Travel Foundations School”</strong> to increase filling rate and reduce attrition, partnering closely with GDP providers.</li>
+          <li><strong>Implemented a performance scorecard</strong> with clear glidepaths and targets using quartile-based management to drive accountability and sustained improvement.</li>
         </ul>
-        <p class="muted">Tip: later we’ll replace these bullets with 3–5 achievements that include numbers.</p>
+        <p class="muted" style="margin: 12px 0 0;">
+          Next step: I can convert these into sharper bullets with exact metrics (NPS delta, attrition %, fill rate, headcount) once you share them.
+        </p>
       </div>
     </section>
 
@@ -66,19 +190,19 @@
       <h2>Projects / Case Studies</h2>
       <div class="grid">
         <div class="card">
-          <h3>NPS Recovery Plan</h3>
-          <p><strong>Problem:</strong> NPS trending below target.</p>
-          <p><strong>What I did:</strong> Root-cause analysis + coaching playbook + process fixes with QA/Training.</p>
-          <p><strong>Tools:</strong> Excel/Power BI, RCA, coaching framework, stakeholder reviews.</p>
-          <p><strong>Result:</strong> Improved trend and behavior compliance (add your numbers later).</p>
+          <h3 style="margin: 0 0 10px;">Growth & Performance System</h3>
+          <p style="margin: 0 0 10px;"><strong>Focus:</strong> Scaling performance while sustaining quality and client trust.</p>
+          <p style="margin: 0 0 10px;"><strong>What I did:</strong> Established KPI governance, scorecards, glidepaths, and execution routines tied to quarterly targets.</p>
+          <p style="margin: 0 0 10px;"><strong>Tools:</strong> KPI dashboards, quartile management, coaching cadence, stakeholder reviews.</p>
+          <p style="margin: 0;"><strong>Result:</strong> Consistent alignment across teams and stronger performance accountability.</p>
         </div>
 
         <div class="card">
-          <h3>Executive Performance Dashboard</h3>
-          <p><strong>Problem:</strong> Limited visibility into supervisor/agent performance drivers.</p>
-          <p><strong>What I did:</strong> Built an executive dashboard with health scores, outliers, and KPI drill-downs.</p>
-          <p><strong>Tools:</strong> Power BI, Excel, KPI governance routines.</p>
-          <p><strong>Result:</strong> Faster decision-making and clearer accountability (add your numbers later).</p>
+          <h3 style="margin: 0 0 10px;">Travel Foundations School</h3>
+          <p style="margin: 0 0 10px;"><strong>Focus:</strong> Increasing fill rate and reducing attrition through structured enablement.</p>
+          <p style="margin: 0 0 10px;"><strong>What I did:</strong> Designed and deployed a foundations program with clear standards, practice loops, and feedback cycles.</p>
+          <p style="margin: 0 0 10px;"><strong>Partners:</strong> GDP providers + internal teams (WFM, QA, Training).</p>
+          <p style="margin: 0;"><strong>Result:</strong> Improved readiness and stability (add your numbers when ready).</p>
         </div>
       </div>
     </section>
@@ -86,7 +210,7 @@
     <section class="card">
       <h2>Skills</h2>
       <ul>
-        <li>Operations Management • Client Success • Stakeholder Management (C-level)</li>
+        <li>Senior Operations Management • Client Success • Stakeholder Management (C-level)</li>
         <li>Performance Management • Coaching Systems • RCA / Continuous Improvement</li>
         <li>Dashboards & Reporting • Power BI • Excel / Google Sheets</li>
         <li>Program Transitions • Cross-functional Leadership • Process Design</li>
@@ -95,13 +219,13 @@
 
     <section class="card">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:TU-EMAIL">TU-EMAIL</a></p>
-      <p>Location: Guatemala (open to remote)</p>
+      <p style="margin: 0 0 8px;">✉️ Email: <a href="mailto:amonzon.p@gmail.com">amonzon.p@gmail.com</a></p>
+      <p style="margin: 0;">🔗 LinkedIn: <a href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank" rel="noopener noreferrer">oscar-monzon-pineda</a></p>
     </section>
   </main>
 
   <footer>
-    © <span id="y"></span> Alejandro Monzon
+    © <span id="y"></span> Oscar Alejandro Monzon
     <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
   </footer>
 </body>
