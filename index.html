@@ -91,25 +91,17 @@
       position:absolute;
       inset:-40px -80px;
       pointer-events:none;
-
-      /* sello de agua (run chart) */
+    
       background-image:
         radial-gradient(900px 380px at 18% 10%, rgba(56,189,248,.22), transparent 60%),
         url("runchart.png");
-
+    
       background-repeat: no-repeat, no-repeat;
       background-position: center 40px, center 70px;
-
-      /* 1) evita deformacion del png */
       background-size: cover, min(1100px, 85vw);
-
-      /* 2) control de “fuerza” del watermark */
-      opacity: .14;
-
-      /* 3) suaviza el sello */
-      filter: blur(0.6px);
-
-      /* opcional: si lo deja demasiado fuerte, cambia a normal */
+    
+      opacity: .18; /* un poquito más visible */
+      filter: blur(0.6px) saturate(1.4) hue-rotate(190deg) brightness(1.05);
       mix-blend-mode: screen;
     }
 
@@ -489,42 +481,69 @@
     <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
   </footer>
 
-  <script>
-    const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+<script>
+  const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+  const linkById = new Map(navLinks.map(a => [a.getAttribute('href').slice(1), a]));
 
-    const linkById = new Map(
-      navLinks.map(a => [a.getAttribute('href').slice(1), a])
-    );
+  const sectionIds = navLinks
+    .map(a => a.getAttribute('href').slice(1))
+    .filter(id => document.getElementById(id));
 
-    const sectionIds = navLinks
-      .map(a => a.getAttribute('href').slice(1))
-      .filter(id => document.getElementById(id));
+  const sections = sectionIds.map(id => document.getElementById(id));
 
-    const sections = sectionIds.map(id => document.getElementById(id));
+  const setActiveLink = (id) => {
+    navLinks.forEach(a => a.classList.remove('active'));
+    const link = linkById.get(id);
+    if (link) link.classList.add('active');
+  };
 
-    const setActiveLink = (id) => {
-      navLinks.forEach(a => a.classList.remove('active'));
-      const link = linkById.get(id);
-      if (link) link.classList.add('active');
-    };
-
-    // Default
-    setActiveLink('top');
-
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter(e => e.isIntersecting)
-        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-      if (visible?.target?.id) setActiveLink(visible.target.id);
-    }, {
-      root: null,
-      threshold: [0.25, 0.4, 0.6],
-      rootMargin: "-35% 0px -55% 0px"
+  // 1) Click = activo inmediato (no dependemos del observer)
+  navLinks.forEach(a => {
+    a.addEventListener('click', () => {
+      const id = a.getAttribute('href').slice(1);
+      setActiveLink(id);
     });
+  });
 
-    sections.forEach(s => observer.observe(s));
-  </script>
+  // Default
+  setActiveLink('top');
+
+  // 2) IntersectionObserver (tolerante con secciones pequeñas)
+  let lastActive = 'top';
+
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (visible?.target?.id) {
+      lastActive = visible.target.id;
+      setActiveLink(lastActive);
+    }
+  }, {
+    threshold: [0.01, 0.08, 0.15],
+    rootMargin: "-20% 0px -65% 0px"
+  });
+
+  sections.forEach(s => observer.observe(s));
+
+  // 3) Fallback: si el observer no “catcha” bien, actualizamos por scroll
+  function onScrollFallback(){
+    const marker = window.scrollY + (window.innerHeight * 0.35);
+
+    let current = 'top';
+    for (const s of sections) {
+      if (s.offsetTop <= marker) current = s.id;
+    }
+
+    if (current && current !== lastActive) {
+      lastActive = current;
+      setActiveLink(current);
+    }
+  }
+
+  window.addEventListener('scroll', onScrollFallback, { passive: true });
+</script>
 
 </body>
 </html>
