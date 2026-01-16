@@ -328,10 +328,11 @@ header::after{
         </ul>
       </div>
  </section>
+</section> <!-- cierra #overview -->
 <!-- END OVERVIEW -->
 
-    <!-- PROJECTS -->
-    <section id="projects">
+<!-- PROJECTS -->
+<section id="projects">
       <h2>Projects / Case Studies</h2>
       <div class="grid">
         <div class="card">
@@ -354,11 +355,11 @@ header::after{
 
     <!-- SIX SIGMA (placed below Projects) -->
     <section id="sixsigma">
-      <p class="muted" style="margin-top:6px;">
-  Yellow Belt certified • Green Belt certification in progress.
-</p>
-        <h2>Operational Excellence | Six Sigma (DMAIC)</h2>
 
+        <h2> Six Sigma (DMAIC) | Operational Excellence </h2>
+      <p class="muted" style="margin-top:6px;">
+  Yellow Belt Certified • Green Belt Certification in progress.
+</p>
       <div class="card">
         <p style="margin:0 0 12px;">
           I apply the <strong>DMAIC methodology</strong> to diagnose performance gaps, prioritize root causes, and implement improvements
@@ -453,11 +454,25 @@ header::after{
 </section>
     
     <!-- CONTACT -->
-    <section class="card" id="contact">
-      <h2>Contact</h2>
-      <p style="margin: 0 0 8px;">✉️ Email: <a href="mailto:amonzon.p@gmail.com">amonzon.p@gmail.com</a></p>
-      <p style="margin: 0;">🔗 LinkedIn: <a href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank" rel="noopener noreferrer">oscar-monzon-pineda</a></p>
-    </section>
+<section class="card" id="contact">
+  <h2>Contact</h2>
+
+  <p style="margin: 0 0 8px;">✉️ Email:
+    <a href="mailto:amonzon.p@gmail.com">amonzon.p@gmail.com</a>
+  </p>
+
+  <p style="margin: 0 0 8px;">🔗 LinkedIn:
+    <a href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank" rel="noopener noreferrer">
+      oscar-monzon-pineda
+    </a>
+  </p>
+
+  <p style="margin: 0 0 8px;">📞 🇬🇹 Phone:
+    <a href="tel:+50247684580">(+502) 4768-4580</a>
+    &nbsp;|&nbsp;
+    <a href="https://wa.me/50247684580" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  </p>
+</section>
   
   </main>
 
@@ -466,27 +481,41 @@ header::after{
     <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
   </footer>
 <script>
-  const links = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
-  const sections = links
-    .map(a => document.querySelector(a.getAttribute('href')))
-    .filter(Boolean);
+  const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
 
-  const setActive = () => {
-    const y = window.scrollY + 120; // ajusta si quieres
-    let currentId = "top";
+  const linkById = new Map(
+    navLinks.map(a => [a.getAttribute('href').slice(1), a])
+  );
 
-    for (const s of sections) {
-      if (y >= s.offsetTop) currentId = s.id;
-    }
+  const sectionIds = navLinks
+    .map(a => a.getAttribute('href').slice(1))
+    .filter(id => document.getElementById(id));
 
-    links.forEach(a => {
-      const id = a.getAttribute('href').slice(1);
-      a.classList.toggle('active', id === currentId);
-    });
+  const sections = sectionIds.map(id => document.getElementById(id));
+
+  const setActiveLink = (id) => {
+    navLinks.forEach(a => a.classList.remove('active'));
+    const link = linkById.get(id);
+    if (link) link.classList.add('active');
   };
 
-  window.addEventListener('scroll', setActive, { passive: true });
-  window.addEventListener('load', setActive);
+  // Default
+  setActiveLink('top');
+
+  const observer = new IntersectionObserver((entries) => {
+    // agarramos la sección más visible
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    if (visible?.target?.id) setActiveLink(visible.target.id);
+  }, {
+    root: null,
+    threshold: [0.25, 0.4, 0.6],
+    rootMargin: "-35% 0px -55% 0px" 
+  });
+
+  sections.forEach(s => observer.observe(s));
 </script>
 
 </body>
