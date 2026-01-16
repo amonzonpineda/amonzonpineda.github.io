@@ -1,11 +1,21 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Oscar Alejandro Monzon — Portfolio</title>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQZ3EYCJB1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-FQZ3EYCJB1');
+</script>
+  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title data-i18n="meta.title">Oscar Alejandro Monzon — Portfolio</title>
+  <meta name="description" content="Senior Operations Manager | Client Success | Performance & Growth" data-i18n="meta.desc"/>
 
-<style>
+  <style>
 :root{
   --max: 980px;
   --bg: #0b0f1a;
@@ -17,76 +27,159 @@
   --navActive: rgba(56,189,248,.18);
   --navActiveBorder: rgba(56,189,248,.55);
 }
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
 body{
   margin:0;
-  font-family:system-ui,Segoe UI,Roboto,Arial;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  line-height:1.55;
   background:var(--bg);
   color:var(--text);
 }
-a{color:var(--accent);text-decoration:none;}
+a{ color:var(--accent); }
+a:hover{ text-decoration:underline; }
+.muted{ color:var(--muted); }
+
+/* NAV */
 .nav{
-  position:sticky;top:0;z-index:20;
-  background:rgba(11,15,26,.85);
-  border-bottom:1px solid rgba(255,255,255,.08);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(11,15,26,.78);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
 .nav-inner{
-  max-width:var(--max);
-  margin:auto;padding:10px 18px;
-  display:flex;gap:12px;flex-wrap:wrap;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 10px 18px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
 }
 .nav a{
-  padding:8px 10px;border-radius:999px;
-  border:1px solid rgba(255,255,255,.1);
-  background:rgba(255,255,255,.03);
-  font-size:14px;color:var(--text);
+  color:var(--text);
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  font-size:14px;
 }
 .nav a.active{
+  background: var(--navActive);
+  border-color: var(--navActiveBorder);
+}
+
+/* Language toggle */
+.lang-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  margin:10px 0 4px;
+}
+.lang-btn{
+  border:1px solid transparent;
+  background:transparent;
+  color:var(--muted);
+  padding:8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:13px;
+}
+.lang-btn[aria-pressed="true"]{
+  color:var(--text);
   background:var(--navActive);
   border-color:var(--navActiveBorder);
 }
 
-.lang-toggle{
-  display:inline-flex;gap:6px;margin:8px 0;
+section{ scroll-margin-top:88px; }
+
+header{
+  position:relative;
+  overflow:hidden;
+}
+header::after{
+  content:"";
+  position:absolute;
+  inset:-40px -80px;
+  pointer-events:none;
+  background-image:
+    radial-gradient(900px 380px at 18% 10%, rgba(56,189,248,.22), transparent 60%),
+    url("runchart.png");
+  background-repeat:no-repeat,no-repeat;
+  background-position:center 40px, center 70px;
+  background-size:cover, min(1100px,85vw);
+  opacity:.14;
+  filter:blur(.6px);
+  mix-blend-mode:screen;
+}
+
+main{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:26px 18px 56px;
+}
+
+h1{
+  font-size:36px;
+  margin:0 0 10px;
+}
+.tagline{
+  font-size:18px;
+  margin:0 0 14px;
+}
+
+.links{
+  margin-top:14px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.pill{
+  padding:10px 14px;
+  border-radius:999px;
   border:1px solid var(--border);
-  border-radius:999px;padding:4px;
-}
-.lang-btn{
-  border:none;background:none;color:var(--muted);
-  padding:6px 10px;border-radius:999px;
-  cursor:pointer;font-size:13px;
-}
-.lang-btn[aria-pressed="true"]{
-  background:var(--navActive);
-  border:1px solid var(--navActiveBorder);
+  background:rgba(255,255,255,.03);
+  text-decoration:none;
   color:var(--text);
 }
 
-main{max-width:var(--max);margin:auto;padding:24px;}
 .card{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:18px;margin:14px 0;
+  border-radius:16px;
+  padding:18px;
+  margin:14px 0;
 }
-h1{margin-top:0}
-h2{margin-bottom:8px}
-.muted{color:var(--muted);}
-.avatar{width:120px;border-radius:999px;}
+
+.avatar{
+  width:120px;
+  height:120px;
+  border-radius:999px;
+  object-fit:cover;
+  border:1px solid var(--border);
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
+<!-- MENU -->
 <nav class="nav">
   <div class="nav-inner">
     <a href="#top" data-i18n="nav.home">↑ Home</a>
     <a href="#overview" data-i18n="nav.overview">Overview</a>
     <a href="#projects" data-i18n="nav.projects">Projects</a>
     <a href="#sixsigma" data-i18n="nav.sixsigma">Six Sigma</a>
-    <a href="#agilepm" data-i18n="nav.agilepm">Agile & PM</a>
+    <a href="#agilepm" data-i18n="nav.agilepm">Agile, PM & Risk Management</a>
     <a href="#contact" data-i18n="nav.contact">Contact</a>
   </div>
 </nav>
@@ -95,139 +188,397 @@ h2{margin-bottom:8px}
 <header id="top">
 <main>
   <h1>Oscar Alejandro Monzon</h1>
-  <img src="profilepicgithub.jpeg" class="avatar">
+  <img src="profilepicgithub.jpeg" alt="Oscar Alejandro Monzon" class="avatar" />
 
   <p class="tagline" data-i18n="hero.tagline">
     Senior Operations Manager | Client Success | Performance & Growth
   </p>
 
-  <p class="muted" data-i18n="hero.summary">
-    I lead multi-channel operations and client success programs, improving KPI performance through data-driven execution.
+  <p class="muted" style="max-width:70ch" data-i18n="hero.summary">
+    I lead multi-channel operations and client success programs, improving KPI performance through data-driven execution,
+    coaching systems, and stakeholder alignment—focused on scalable growth, customer experience, and measurable outcomes.
   </p>
 
   <!-- Language Switch -->
   <div class="lang-toggle">
-    <button class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
-    <button class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+    <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
   </div>
 
-  <p>
-    <a id="cvLink" href="cv.pdf" class="pill" data-i18n="cv.text">Download CV</a>
+  <p class="links">
+    <a class="pill" href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank">LinkedIn</a>
+    <a class="pill" href="mailto:amonzon.p@gmail.com">Email</a>
+    <a class="pill" id="cvLink" href="cv.pdf" data-i18n="cv.text">Download CV</a>
   </p>
 
-  <p class="muted" data-i18n="hero.location">📍 Guatemala (open to remote)</p>
+  <p class="muted" data-i18n="hero.location">
+    📍 Guatemala (open to remote)
+  </p>
 </main>
 </header>
 
+<!-- ===== OVERVIEW ===== -->
 <main>
 
-<section id="overview" class="card">
-  <h2 data-i18n="about.title">About</h2>
-  <p data-i18n="about.body">
-    Senior Operations & Client Management leader with experience scaling teams and improving customer experience.
+<section id="overview">
+  <section class="card">
+    <h2 data-i18n="about.title">About</h2>
+    <p data-i18n="about.body">
+      I’m a Senior Operations & Client Management leader with experience scaling teams, improving customer experience,
+      and translating performance data into clear action plans. I build structured coaching and continuous improvement
+      systems that align stakeholders, strengthen execution, and deliver measurable results.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="skills.title">Skills</h2>
+    <ul>
+      <li data-i18n="skills.l1">Operations Management • Client Success • Stakeholder Management (C-level)</li>
+      <li data-i18n="skills.l2">Performance Management • Coaching Systems • RCA / Continuous Improvement</li>
+      <li data-i18n="skills.l3">Dashboards & Reporting • Power BI • Excel / Google Sheets</li>
+      <li data-i18n="skills.l4">Program Transitions • Cross-functional Leadership • Process Design</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 data-i18n="wins.title">Key Wins</h2>
+    <div class="card">
+      <ul>
+        <li data-i18n="wins.l1"><strong>Drove 35% YoY account growth</strong> for three consecutive years.</li>
+        <li data-i18n="wins.l2"><strong>Improved NPS performance</strong> by addressing key drivers.</li>
+        <li data-i18n="wins.l3"><strong>Launched a Travel Foundations School</strong> to reduce attrition.</li>
+        <li data-i18n="wins.l4"><strong>Implemented performance scorecards</strong> to drive accountability.</li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <h2 data-i18n="projects.title">Projects / Case Studies</h2>
+  <div class="card">
+    <h3 data-i18n="projects.p1.title">Growth & Performance System</h3>
+    <p data-i18n="projects.p1.body">
+      Established KPI governance, scorecards, glidepaths, and execution routines tied to quarterly targets.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 data-i18n="projects.p2.title">Travel Foundations School</h3>
+    <p data-i18n="projects.p2.body">
+      Designed and deployed a foundations program with clear standards, practice loops, and feedback cycles.
+    </p>
+  </div>
+</section>
+
+<!-- ===== SIX SIGMA ===== -->
+<section id="sixsigma">
+  <h2 data-i18n="sixsigma.title">Six Sigma (DMAIC) | Operational Excellence</h2>
+  <p class="muted" data-i18n="sixsigma.subtitle">
+    Yellow Belt Certified • Green Belt Certification in progress.
   </p>
+
+  <div class="card">
+    <p data-i18n="sixsigma.body">
+      I apply DMAIC methodology to diagnose performance gaps, prioritize root causes, and implement improvements.
+    </p>
+  </div>
+    <div class="badges">
+    <span class="badge">DMAIC</span>
+    <span class="badge">RCA (5 Whys)</span>
+    <span class="badge">Pareto</span>
+    <span class="badge">Histogram</span>
+    <span class="badge">Ishikawa</span>
+    <span class="badge">Scatter / Correlation</span>
+    <span class="badge">Quartile Management</span>
+    <span class="badge">Glidepaths & Scorecards</span>
+  </div>
+
+  <ul style="margin-top:14px;">
+    <li data-i18n="sixsigma.define"><strong>Define:</strong> Align stakeholders on problem statement, scope, and success metrics.</li>
+    <li data-i18n="sixsigma.measure"><strong>Measure:</strong> Establish baselines and segment performance using KPI dashboards.</li>
+    <li data-i18n="sixsigma.analyze"><strong>Analyze:</strong> Identify drivers with Pareto, Ishikawa, scatter/correlation, and distribution analysis.</li>
+    <li data-i18n="sixsigma.improve"><strong>Improve:</strong> Deploy targeted interventions and track lift vs baseline.</li>
+    <li data-i18n="sixsigma.control"><strong>Control:</strong> Sustain improvements with scorecards, governance cadence, and accountability routines.</li>
+  </ul>
+
+  <div class="kit-grid">
+    <div class="figure">
+      <img src="pareto.png" alt="Pareto Chart">
+      <div class="cap" data-i18n="sixsigma.cap1">
+        <strong>Pareto:</strong> Prioritize the vital few drivers causing most impact.
+      </div>
+    </div>
+
+    <div class="figure">
+      <img src="histograma.png" alt="Histogram">
+      <div class="cap" data-i18n="sixsigma.cap2">
+        <strong>Histogram:</strong> Understand distribution, variation, and outliers.
+      </div>
+    </div>
+
+    <div class="figure">
+      <img src="fishbone.png" alt="Ishikawa Diagram">
+      <div class="cap" data-i18n="sixsigma.cap3">
+        <strong>Ishikawa:</strong> Map root causes across People / Process / Tools.
+      </div>
+    </div>
+
+    <div class="figure">
+      <img src="scatter.png" alt="Scatter Plot">
+      <div class="cap" data-i18n="sixsigma.cap4">
+        <strong>Scatter:</strong> Validate relationships and focus improvements.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px;">
+    <p class="muted" data-i18n="sixsigma.footer">
+      This toolkit supports operational execution and executive storytelling.
+    </p>
+  </div>
 </section>
 
-<section id="projects" class="card">
-  <h2 data-i18n="projects.title">Projects</h2>
-  <p data-i18n="projects.body">Performance systems and operational excellence programs.</p>
-</section>
-
-<section id="sixsigma" class="card">
-  <h2 data-i18n="sixsigma.title">Six Sigma Excellence</h2>
-  <p data-i18n="sixsigma.body">Applying DMAIC methodology to improve processes.</p>
-</section>
-
+<!-- ===== AGILE PM ===== -->
 <section id="agilepm" class="card">
-  <h2 data-i18n="agile.title">Agile & Project Management</h2>
-  <p data-i18n="agile.body">Driving structured delivery and stakeholder alignment.</p>
+  <h2 data-i18n="agile.title">Agile, PM & Risk Management</h2>
+  <p data-i18n="agile.body">
+    I combine Agile delivery (Scrum), project management fundamentals, and risk management mindset.
+  </p>
+
+  <div class="grid-3">
+    <div class="mini-card">
+      <h3 data-i18n="agile.scrum.title">Scrum Master</h3>
+      <p class="muted" data-i18n="agile.scrum.subtitle">Certified Scrum Master</p>
+      <ul>
+        <li data-i18n="agile.scrum.l1">Sprint planning and standups</li>
+        <li data-i18n="agile.scrum.l2">Backlog refinement and user stories</li>
+        <li data-i18n="agile.scrum.l3">Remove blockers and improve delivery</li>
+      </ul>
+    </div>
+
+    <div class="mini-card">
+      <h3 data-i18n="agile.pm.title">Project Management</h3>
+      <ul>
+        <li data-i18n="agile.pm.l1">Scope, timelines, and dependencies</li>
+        <li data-i18n="agile.pm.l2">Prioritization and execution tracking</li>
+        <li data-i18n="agile.pm.l3">Stakeholder alignment</li>
+      </ul>
+    </div>
+
+    <div class="mini-card">
+      <h3 data-i18n="agile.risk.title">Risk Management</h3>
+      <ul>
+        <li data-i18n="agile.risk.l1">Risk identification and assessment</li>
+        <li data-i18n="agile.risk.l2">Mitigation and contingencies</li>
+        <li data-i18n="agile.risk.l3">Decision-making under constraints</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
-<section id="contact" class="card">
+<!-- ===== CONTACT ===== -->
+<section class="card" id="contact">
   <h2 data-i18n="contact.title">Contact</h2>
-  <p>Email: amonzon.p@gmail.com</p>
+
+  <p>✉️ Email:
+    <a href="mailto:amonzon.p@gmail.com">amonzon.p@gmail.com</a>
+  </p>
+
+  <p>🔗 LinkedIn:
+    <a href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank">
+      oscar-monzon-pineda
+    </a>
+  </p>
+
+  <p>📞 🇬🇹 Phone:
+    <a href="tel:+50247684580">(+502) 4768-4580</a>
+    |
+    <a href="https://wa.me/50247684580" target="_blank">WhatsApp</a>
+  </p>
 </section>
 
 </main>
 
+<footer>
+  © <span id="y"></span> Oscar Alejandro Monzon
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</footer>
+
+<!-- ===== MENU ACTIVE SCRIPT ===== -->
 <script>
-// ===== Scroll Active Menu =====
 const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
-const sections = navLinks.map(a => document.querySelector(a.getAttribute('href')));
-function setActive(id){
+const linkById = new Map(navLinks.map(a => [a.getAttribute('href').slice(1), a]));
+const sectionIds = navLinks.map(a=>a.getAttribute('href').slice(1)).filter(id=>document.getElementById(id));
+const sections = sectionIds.map(id=>document.getElementById(id));
+
+function setActiveLink(id){
  navLinks.forEach(a=>a.classList.remove('active'));
- const link = navLinks.find(a=>a.getAttribute('href')==='#'+id);
+ const link = linkById.get(id);
  if(link) link.classList.add('active');
 }
-window.addEventListener('scroll',()=>{
- let current="top";
+window.addEventListener('scroll', ()=>{
+ let current = "top";
  sections.forEach(sec=>{
-   if(sec.offsetTop <= window.scrollY+120) current=sec.id;
+   if(sec.offsetTop <= window.scrollY + 120) current = sec.id;
  });
- setActive(current);
+ setActiveLink(current);
 });
-setActive("top");
+setActiveLink("top");
+</script>
 
-// ===== Translations =====
+<!-- ===== TRANSLATIONS + LANGUAGE SWITCH ===== -->
+<script>
 const translations = {
- en:{
+ en: {
   "nav.home":"↑ Home",
   "nav.overview":"Overview",
   "nav.projects":"Projects",
   "nav.sixsigma":"Six Sigma",
-  "nav.agilepm":"Agile & PM",
+  "nav.agilepm":"Agile, PM & Risk Management",
   "nav.contact":"Contact",
+
   "hero.tagline":"Senior Operations Manager | Client Success | Performance & Growth",
-  "hero.summary":"I lead multi-channel operations and client success programs, improving KPI performance through data-driven execution.",
+  "hero.summary":"I lead multi-channel operations and client success programs, improving KPI performance through data-driven execution, coaching systems, and stakeholder alignment—focused on scalable growth, customer experience, and measurable outcomes.",
   "hero.location":"📍 Guatemala (open to remote)",
+  "cv.text":"Download CV",
+
   "about.title":"About",
-  "about.body":"Senior Operations & Client Management leader with experience scaling teams and improving customer experience.",
-  "projects.title":"Projects",
-  "projects.body":"Performance systems and operational excellence programs.",
-  "sixsigma.title":"Six Sigma Excellence",
-  "sixsigma.body":"Applying DMAIC methodology to improve processes.",
-  "agile.title":"Agile & Project Management",
-  "agile.body":"Driving structured delivery and stakeholder alignment.",
-  "contact.title":"Contact",
-  "cv.text":"Download CV"
+  "about.body":"I’m a Senior Operations & Client Management leader with experience scaling teams, improving customer experience, and translating performance data into clear action plans. I build structured coaching and continuous improvement systems that align stakeholders, strengthen execution, and deliver measurable results.",
+
+  "skills.title":"Skills",
+  "skills.l1":"Operations Management • Client Success • Stakeholder Management (C-level)",
+  "skills.l2":"Performance Management • Coaching Systems • RCA / Continuous Improvement",
+  "skills.l3":"Dashboards & Reporting • Power BI • Excel / Google Sheets",
+  "skills.l4":"Program Transitions • Cross-functional Leadership • Process Design",
+
+  "wins.title":"Key Wins",
+  "wins.l1":"Drove 35% YoY account growth for three consecutive years.",
+  "wins.l2":"Improved NPS performance by addressing key drivers.",
+  "wins.l3":"Launched a Travel Foundations School to reduce attrition.",
+  "wins.l4":"Implemented performance scorecards to drive accountability.",
+
+  "projects.title":"Projects / Case Studies",
+  "projects.p1.title":"Growth & Performance System",
+  "projects.p1.body":"Established KPI governance, scorecards, glidepaths, and execution routines tied to quarterly targets.",
+  "projects.p2.title":"Travel Foundations School",
+  "projects.p2.body":"Designed and deployed a foundations program with clear standards, practice loops, and feedback cycles.",
+
+  "sixsigma.title":"Six Sigma (DMAIC) | Operational Excellence",
+  "sixsigma.subtitle":"Yellow Belt Certified • Green Belt Certification in progress.",
+  "sixsigma.body":"I apply DMAIC methodology to diagnose performance gaps, prioritize root causes, and implement improvements.",
+  "sixsigma.define":"Define: Align stakeholders on problem statement, scope, and success metrics.",
+  "sixsigma.measure":"Measure: Establish baselines and segment performance using KPI dashboards.",
+  "sixsigma.analyze":"Analyze: Identify drivers with Pareto, Ishikawa, scatter/correlation, and distribution analysis.",
+  "sixsigma.improve":"Improve: Deploy targeted interventions and track lift vs baseline.",
+  "sixsigma.control":"Control: Sustain improvements with scorecards, governance cadence, and accountability routines.",
+  "sixsigma.cap1":"Pareto: Prioritize the vital few drivers causing most impact.",
+  "sixsigma.cap2":"Histogram: Understand distribution, variation, and outliers.",
+  "sixsigma.cap3":"Ishikawa: Map root causes across People / Process / Tools.",
+  "sixsigma.cap4":"Scatter: Validate relationships and focus improvements.",
+  "sixsigma.footer":"This toolkit supports operational execution and executive storytelling.",
+
+  "agile.title":"Agile, PM & Risk Management",
+  "agile.body":"I combine Agile delivery (Scrum), project management fundamentals, and a risk management mindset.",
+  "agile.scrum.title":"Scrum Master",
+  "agile.scrum.subtitle":"Certified Scrum Master",
+  "agile.scrum.l1":"Sprint planning and standups",
+  "agile.scrum.l2":"Backlog refinement and user stories",
+  "agile.scrum.l3":"Remove blockers and improve delivery",
+  "agile.pm.title":"Project Management",
+  "agile.pm.l1":"Scope, timelines, and dependencies",
+  "agile.pm.l2":"Prioritization and execution tracking",
+  "agile.pm.l3":"Stakeholder alignment",
+  "agile.risk.title":"Risk Management",
+  "agile.risk.l1":"Risk identification and assessment",
+  "agile.risk.l2":"Mitigation and contingencies",
+  "agile.risk.l3":"Decision-making under constraints",
+
+  "contact.title":"Contact"
  },
- es:{
+
+ es: {
   "nav.home":"↑ Inicio",
   "nav.overview":"Resumen",
   "nav.projects":"Proyectos",
   "nav.sixsigma":"Six Sigma",
-  "nav.agilepm":"Agile y PM",
+  "nav.agilepm":"Agile, PM y Gestión de Riesgos",
   "nav.contact":"Contacto",
+
   "hero.tagline":"Senior Operations Manager | Client Success | Performance & Growth",
-  "hero.summary":"Lidero operaciones multicanal y programas de éxito del cliente, mejorando KPIs mediante ejecución basada en datos.",
+  "hero.summary":"Lidero operaciones multicanal y programas de éxito del cliente, mejorando KPIs mediante ejecución basada en datos, sistemas de coaching y alineación de stakeholders.",
   "hero.location":"📍 Guatemala (abierto a remoto)",
+  "cv.text":"Descargar CV",
+
   "about.title":"Acerca de mí",
-  "about.body":"Líder de Operaciones y Gestión de Clientes con experiencia escalando equipos y mejorando la experiencia del cliente.",
-  "projects.title":"Proyectos",
-  "projects.body":"Sistemas de desempeño y excelencia operacional.",
-  "sixsigma.title":"Excelencia Six Sigma",
-  "sixsigma.body":"Aplicando metodología DMAIC para mejorar procesos.",
-  "agile.title":"Agile y Gestión de Proyectos",
-  "agile.body":"Impulsando entrega estructurada y alineación de stakeholders.",
-  "contact.title":"Contacto",
-  "cv.text":"Descargar CV"
+  "about.body":"Soy un líder de Operaciones y Gestión de Clientes con experiencia escalando equipos, mejorando la experiencia del cliente y convirtiendo datos de desempeño en planes de acción claros.",
+
+  "skills.title":"Habilidades",
+  "skills.l1":"Gestión de Operaciones • Éxito del Cliente • Gestión de Stakeholders (C-level)",
+  "skills.l2":"Gestión del Desempeño • Sistemas de Coaching • RCA / Mejora Continua",
+  "skills.l3":"Dashboards & Reportes • Power BI • Excel / Google Sheets",
+  "skills.l4":"Transiciones de Programas • Liderazgo Cross-funcional • Diseño de Procesos",
+
+  "wins.title":"Logros Clave",
+  "wins.l1":"Impulsé un crecimiento de cuenta del 35% YoY durante tres años consecutivos.",
+  "wins.l2":"Mejoré el desempeño de NPS abordando los principales impulsores.",
+  "wins.l3":"Lancé Travel Foundations School para reducir la rotación.",
+  "wins.l4":"Implementé scorecards de desempeño para impulsar la rendición de cuentas.",
+
+  "projects.title":"Proyectos / Casos",
+  "projects.p1.title":"Sistema de Crecimiento y Desempeño",
+  "projects.p1.body":"Establecí gobernanza de KPIs, scorecards y rutinas de ejecución.",
+  "projects.p2.title":"Travel Foundations School",
+  "projects.p2.body":"Diseñé e implementé un programa estructurado de fundamentos.",
+
+  "sixsigma.title":"Six Sigma (DMAIC) | Excelencia Operacional",
+  "sixsigma.subtitle":"Yellow Belt certificado • Green Belt en progreso.",
+  "sixsigma.body":"Aplico DMAIC para diagnosticar brechas de desempeño e implementar mejoras.",
+  "sixsigma.define":"Definir: Alinear stakeholders sobre el problema, alcance y métricas.",
+  "sixsigma.measure":"Medir: Establecer líneas base y segmentar desempeño.",
+  "sixsigma.analyze":"Analizar: Identificar impulsores con Pareto e Ishikawa.",
+  "sixsigma.improve":"Mejorar: Implementar intervenciones y medir impacto.",
+  "sixsigma.control":"Controlar: Sostener mejoras con scorecards y gobernanza.",
+  "sixsigma.cap1":"Pareto: Priorizar los impulsores vitales.",
+  "sixsigma.cap2":"Histograma: Comprender variación y outliers.",
+  "sixsigma.cap3":"Ishikawa: Mapear causas raíz.",
+  "sixsigma.cap4":"Scatter: Validar relaciones.",
+  "sixsigma.footer":"Este toolkit apoya la ejecución operativa y el storytelling ejecutivo.",
+
+  "agile.title":"Agile, PM y Gestión de Riesgos",
+  "agile.body":"Combino entrega Agile, gestión de proyectos y mentalidad de riesgos.",
+  "agile.scrum.title":"Scrum Master",
+  "agile.scrum.subtitle":"Scrum Master Certificado",
+  "agile.scrum.l1":"Planificación de sprints y dailys",
+  "agile.scrum.l2":"Refinamiento de backlog e historias",
+  "agile.scrum.l3":"Eliminar bloqueos y mejorar entrega",
+  "agile.pm.title":"Gestión de Proyectos",
+  "agile.pm.l1":"Alcance, tiempos y dependencias",
+  "agile.pm.l2":"Priorización y seguimiento",
+  "agile.pm.l3":"Alineación de stakeholders",
+  "agile.risk.title":"Gestión de Riesgos",
+  "agile.risk.l1":"Identificación y evaluación de riesgos",
+  "agile.risk.l2":"Planes de mitigación",
+  "agile.risk.l3":"Toma de decisiones bajo restricciones",
+
+  "contact.title":"Contacto"
  }
 };
 
-// ===== Language Switch =====
-const buttons=document.querySelectorAll(".lang-btn");
+const buttons = document.querySelectorAll(".lang-btn");
+
 function applyLang(lang){
  localStorage.setItem("lang",lang);
  document.querySelectorAll("[data-i18n]").forEach(el=>{
-   const key=el.getAttribute("data-i18n");
-   if(translations[lang][key]) el.textContent=translations[lang][key];
+   const key = el.getAttribute("data-i18n");
+   if(translations[lang][key]) el.textContent = translations[lang][key];
  });
  buttons.forEach(b=>b.setAttribute("aria-pressed", b.dataset.lang===lang));
- const cv=document.getElementById("cvLink");
- cv.href = (lang==="es") ? "cv_es.pdf" : "cv.pdf";
+ document.getElementById("cvLink").href = (lang==="es") ? "cv_es.pdf" : "cv.pdf";
 }
+
 buttons.forEach(b=>b.addEventListener("click",()=>applyLang(b.dataset.lang)));
-applyLang(localStorage.getItem("lang")||"en");
+applyLang(localStorage.getItem("lang") || "en");
 </script>
 
 </body>
