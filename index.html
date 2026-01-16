@@ -487,6 +487,7 @@ header::after{
     navLinks.map(a => [a.getAttribute('href').slice(1), a])
   );
 
+  // Solo las secciones del menú (evita que “About/Skills/Wins” interfieran)
   const sectionIds = navLinks
     .map(a => a.getAttribute('href').slice(1))
     .filter(id => document.getElementById(id));
@@ -499,23 +500,42 @@ header::after{
     if (link) link.classList.add('active');
   };
 
-  // Default
-  setActiveLink('top');
+  // Offset para compensar el nav sticky
+  const OFFSET = 110;
 
-  const observer = new IntersectionObserver((entries) => {
-    // agarramos la sección más visible
-    const visible = entries
-      .filter(e => e.isIntersecting)
-      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+  const updateActiveByScroll = () => {
+    const pos = window.scrollY + OFFSET;
 
-    if (visible?.target?.id) setActiveLink(visible.target.id);
-  }, {
-    root: null,
-    threshold: [0.25, 0.4, 0.6],
-    rootMargin: "-35% 0px -55% 0px" 
-  });
+    // si estás arriba de todo
+    if (pos <= (sections[0]?.offsetTop || 0) + 10) {
+      setActiveLink('top');
+      return;
+    }
 
-  sections.forEach(s => observer.observe(s));
+    // encuentra la última sección cuyo top ya pasó
+    let currentId = 'top';
+    for (const sec of sections) {
+      if (sec.offsetTop <= pos) currentId = sec.id;
+    }
+    setActiveLink(currentId);
+  };
+
+  // init
+  updateActiveByScroll();
+
+  // scroll listener optimizado
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveByScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', updateActiveByScroll);
 </script>
 
 </body>
