@@ -257,6 +257,7 @@
       <a href="#projects">Projects</a>
       <a href="#sixsigma">Six Sigma</a>
       <a href="#agilepm">Agile, PM & Risk Management</a>
+      <a href="#commercial">Commercial Experience</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
@@ -452,7 +453,51 @@
         </div>
       </div>
     </section>
+    <section id="commercial" class="card">
+  <h2>Commercial Experience</h2>
+  <p>
+    I bring commercial and Key account management expertise built through enterprise BPO environments—owning client relationships,
+    driving performance outcomes, and identifying growth opportunities that translate directly to Customer Success and Key Account roles.
+  </p>
 
+  <div class="grid-3">
+    <div class="mini-card">
+      <h3>Client & Stakeholder Management</h3>
+      <ul>
+        <li>Executive communication and alignment (C-level / Director level)</li>
+        <li>Expectation management, escalation handling, and decision support</li>
+        <li>Business Reviews-QBR style updates: performance narrative, risks, and next steps</li>
+      </ul>
+    </div>
+
+    <div class="mini-card">
+      <h3>Value Delivery & Retention</h3>
+      <ul>
+        <li>Translate KPIs into action plans that protect customer experience</li>
+        <li>Drive adoption of operating routines (governance, cadence, accountability)</li>
+        <li>Risk signals: identify churn drivers and implement mitigation plans</li>
+      </ul>
+    </div>
+
+    <div class="mini-card">
+      <h3>Growth (Upsell / Cross-sell Mindset)</h3>
+      <ul>
+        <li>Identify expansion opportunities based on client needs and performance gaps</li>
+        <li>Build business cases (capacity, cost/benefit, ROI) to support decisions</li>
+        <li>Partner cross-functionally to execute scalable improvements</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px;">
+    <p class="muted" style="margin:0;">
+      This section is designed to highlight transferable commercial strengths—customer outcomes, stakeholder trust, and growth thinking—
+      beyond a “call center” label.
+    </p>
+  </div>
+</section>
+
+    
     <!-- CONTACT -->
     <section class="card" id="contact">
       <h2>Contact</h2>
@@ -485,7 +530,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
 
-  // Solo IDs que realmente existen
   const sectionIds = navLinks
     .map(a => a.getAttribute('href').slice(1))
     .filter(id => document.getElementById(id));
@@ -498,24 +542,45 @@ document.addEventListener("DOMContentLoaded", () => {
     if (link) link.classList.add('active');
   }
 
-  // Click = activo inmediato
+  // Scrollspy usando posición real en pantalla (más confiable)
+  function getCurrentSection(){
+    // ajusta según tu nav sticky
+    const offset = 110;
+
+    // buscamos la sección cuyo top esté más cercano (pero no mayor) al offset
+    let current = 'top';
+    let bestTop = -Infinity;
+
+    for (const s of sections) {
+      const top = s.getBoundingClientRect().top; // relativo a viewport
+      if (top <= offset && top > bestTop) {
+        bestTop = top;
+        current = s.id;
+      }
+    }
+    return current;
+  }
+
+  function updateActive(){
+    setActive(getCurrentSection());
+  }
+
+  // Click = activo inmediato + recheck después del scroll suave
   navLinks.forEach(a => {
     a.addEventListener('click', () => {
       const id = a.getAttribute('href').slice(1);
       setActive(id);
+
+      // Re-check cuando ya terminó el scroll suave (2 ticks)
+      requestAnimationFrame(() => {
+        requestAnimationFrame(updateActive);
+      });
+
+      // y uno extra por si el browser tarda más
+      setTimeout(updateActive, 180);
+      setTimeout(updateActive, 450);
     });
   });
-
-  // Scrollspy (robusto)
-  function updateActive(){
-    const marker = window.scrollY + 120; // ajusta si tu nav tapa más/menos
-    let current = 'top';
-
-    for (const s of sections) {
-      if (s.offsetTop <= marker) current = s.id;
-    }
-    setActive(current);
-  }
 
   // Init
   setActive('top');
@@ -526,6 +591,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('hashchange', updateActive);
 });
 </script>
-
+  
 </body>
 </html>
