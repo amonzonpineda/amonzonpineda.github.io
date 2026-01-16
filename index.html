@@ -487,7 +487,6 @@ header::after{
     navLinks.map(a => [a.getAttribute('href').slice(1), a])
   );
 
-  // Solo las secciones del menú (evita que “About/Skills/Wins” interfieran)
   const sectionIds = navLinks
     .map(a => a.getAttribute('href').slice(1))
     .filter(id => document.getElementById(id));
@@ -500,43 +499,32 @@ header::after{
     if (link) link.classList.add('active');
   };
 
-  // Offset para compensar el nav sticky
-  const OFFSET = 110;
+  // 1) Cuando haces click, marcá activo de una vez (no dependas del observer)
+  navLinks.forEach(a => {
+    a.addEventListener('click', () => {
+      const id = a.getAttribute('href').slice(1);
+      setActiveLink(id);
+    });
+  });
 
-  const updateActiveByScroll = () => {
-    const pos = window.scrollY + OFFSET;
+  // Default
+  setActiveLink('top');
 
-    // si estás arriba de todo
-    if (pos <= (sections[0]?.offsetTop || 0) + 10) {
-      setActiveLink('top');
-      return;
-    }
+  // 2) Observer más tolerante para secciones pequeñas
+  const observer = new IntersectionObserver((entries) => {
+    // entre lo que reporta, elegí la que tenga más intersección
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-    // encuentra la última sección cuyo top ya pasó
-    let currentId = 'top';
-    for (const sec of sections) {
-      if (sec.offsetTop <= pos) currentId = sec.id;
-    }
-    setActiveLink(currentId);
-  };
+    if (visible?.target?.id) setActiveLink(visible.target.id);
+  }, {
+    root: null,
+    threshold: [0.01, 0.1, 0.2],     // <- mucho más fácil de cumplir
+    rootMargin: "-20% 0px -65% 0px"  // <- franja más “amigable” con secciones cortas
+  });
 
-  // init
-  updateActiveByScroll();
-
-  // scroll listener optimizado
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateActiveByScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-
-  window.addEventListener('resize', updateActiveByScroll);
+  sections.forEach(s => observer.observe(s));
 </script>
-
 </body>
 </html>
