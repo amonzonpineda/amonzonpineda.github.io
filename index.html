@@ -79,6 +79,40 @@
       border-color: var(--navActiveBorder);
       box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset;
     }
+/* Language toggle (pro) */
+.lang-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:6px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.03);
+  margin: 10px 0 4px;
+}
+
+.lang-btn{
+  appearance:none;
+  border:1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.lang-btn:hover{
+  color: var(--text);
+  border-color: rgba(56,189,248,.35);
+}
+
+.lang-btn[aria-pressed="true"]{
+  color: var(--text);
+  background: var(--navActive);
+  border-color: var(--navActiveBorder);
+}
       
 section{ scroll-margin-top: 88px; }
 
@@ -279,7 +313,11 @@ header::after{
         I lead multi-channel operations and client success programs, improving KPI performance through data-driven execution,
         coaching systems, and stakeholder alignment—focused on scalable growth, customer experience, and measurable outcomes.
       </p>
-
+      <div class="lang-toggle" role="group" aria-label="Language switch">
+  <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+  <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+        
       <p class="links">
         <a class="pill" href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a class="pill" href="mailto:amonzon.p@gmail.com">Email</a>
@@ -525,6 +563,30 @@ header::after{
   });
 
   sections.forEach(s => observer.observe(s));
+  (function(){
+    const buttons = Array.from(document.querySelectorAll('.lang-btn'));
+    const saved = localStorage.getItem('lang') || 'en';
+
+    function applyLang(lang){
+      localStorage.setItem('lang', lang);
+
+      buttons.forEach(btn => {
+        const isActive = btn.dataset.lang === lang;
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      // Dejamos “marcado” el idioma en el <html> (útil para lo que sigue)
+      document.documentElement.setAttribute('data-lang', lang);
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    applyLang(saved);
+    window.applyLang = applyLang; // por si luego lo quieres usar desde otros scripts
+  })();
+
 </script>
 </body>
 </html>
