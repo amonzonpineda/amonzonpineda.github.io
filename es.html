@@ -1,1 +1,356 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQZ3EYCJB1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FQZ3EYCJB1');
+  </script>
 
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oscar Alejandro Monzon — Portafolio</title>
+  <meta name="description" content="Senior Operations Manager | Client Success | Performance & Growth" />
+
+  <style>
+    :root{
+      --max: 980px;
+      --bg: #0b0f1a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #a1a1aa;
+      --border: rgba(255,255,255,.10);
+      --accent: #38bdf8;
+      --navActive: rgba(56,189,248,.18);
+      --navActiveBorder: rgba(56,189,248,.55);
+    }
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      line-height: 1.55;
+      background: var(--bg);
+      color: var(--text);
+    }
+    a{ color: var(--accent); }
+    a:hover{ text-decoration: underline; }
+    .muted{ color: var(--muted); }
+
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11,15,26,.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 18px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav a{
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      font-size: 14px;
+    }
+    .nav a.active{
+      background: var(--navActive);
+      border-color: var(--navActiveBorder);
+    }
+
+    section{ scroll-margin-top: 88px; }
+
+    header{
+      position: relative;
+      overflow: hidden;
+    }
+    header::after{
+      content:"";
+      position:absolute;
+      inset:-40px -80px;
+      pointer-events:none;
+      background-image:
+        radial-gradient(900px 380px at 18% 10%, rgba(56,189,248,.22), transparent 60%),
+        url("runchart.png");
+      background-repeat: no-repeat, no-repeat;
+      background-position: center 40px, center 70px;
+      background-size: cover, min(1100px, 85vw);
+      opacity: .18;
+      filter: blur(0.6px) saturate(1.4) hue-rotate(190deg) brightness(1.05);
+      mix-blend-mode: screen;
+    }
+
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 26px 18px 56px;
+    }
+
+    h1{ font-size:36px; margin:0 0 10px; }
+    .tagline{ font-size:18px; margin:0 0 14px; }
+
+    .links{
+      margin-top:14px;
+      display:flex;
+      gap:12px;
+    }
+    .pill{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      text-decoration:none;
+    }
+
+    .card{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      margin:14px 0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+    @media(min-width:860px){
+      .grid{grid-template-columns:1fr 1fr;}
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    @media(max-width:860px){
+      .grid-3{grid-template-columns:1fr;}
+    }
+
+    .mini-card{
+      background: rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:14px;
+    }
+
+    .avatar{
+      width:120px;height:120px;
+      border-radius:999px;
+      object-fit:cover;
+      border:1px solid var(--border);
+      margin:14px 0;
+    }
+
+    .badges{display:flex;gap:10px;flex-wrap:wrap;}
+    .badge{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      font-size:13px;
+    }
+
+    .lang-switch{
+      margin-left:auto;
+      display:inline-flex;
+      gap:8px;
+      padding:4px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .lang-pill{
+      color: var(--muted);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:999px;
+    }
+    .lang-pill.is-active{
+      background: var(--navActive);
+      border:1px solid var(--navActiveBorder);
+      color:var(--text);
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top">↑ Inicio</a>
+    <a href="#overview">Resumen</a>
+    <a href="#projects">Proyectos</a>
+    <a href="#sixsigma">Six Sigma</a>
+    <a href="#agilepm">Agile, PM y Gestión de Riesgos</a>
+    <a href="#commercial">Experiencia Comercial</a>
+    <a href="#contact">Contacto</a>
+
+    <span class="lang-switch">
+      <a href="index.html" class="lang-pill">EN</a>
+      <a href="es.html" class="lang-pill is-active">ES</a>
+    </span>
+  </div>
+</nav>
+
+<header id="top">
+  <main>
+    <h1>Oscar Alejandro Monzon</h1>
+    <img src="profilepicgithub.jpeg" class="avatar" alt="Oscar Alejandro Monzon"/>
+
+    <p class="tagline"><strong>Senior Operations Manager | Client Success | Performance & Growth</strong></p>
+
+    <p class="muted">
+      Lidero operaciones multicanal y programas de éxito del cliente, mejorando el rendimiento de KPIs mediante ejecución basada en datos,
+      sistemas de coaching y alineación con stakeholders, enfocado en crecimiento escalable y experiencia del cliente.
+    </p>
+
+    <p class="links">
+      <a class="pill" href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank">LinkedIn</a>
+      <a class="pill" href="mailto:amonzon.p@gmail.com">Email</a>
+      <a class="pill" href="cv_es.pdf" target="_blank">Descargar CV</a>
+    </p>
+
+    <p class="muted">📍 Guatemala (abierto a remoto)</p>
+  </main>
+</header>
+
+<main>
+
+<section id="overview">
+  <section class="card">
+    <h2>Sobre mí</h2>
+    <p>
+      Líder Senior en Operaciones y Gestión de Clientes con experiencia escalando equipos, mejorando experiencia del cliente
+      y traduciendo datos de desempeño en planes de acción claros.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Habilidades</h2>
+    <ul>
+      <li>Gestión de Operaciones • Éxito del Cliente • Gestión de Stakeholders (C-level)</li>
+      <li>Gestión del Rendimiento • Sistemas de Coaching • RCA / Mejora Continua</li>
+      <li>Scrum Master • Yellow Belt Six Sigma • Dashboards & Reportes • Excel / Google Sheets</li>
+      <li>Transiciones de Programa • Liderazgo Cross-funcional • Diseño de Procesos</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Logros Clave</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Crecimiento del 35% YoY</strong> durante tres años consecutivos mediante ejecución operativa y relación con cliente.</li>
+        <li><strong>Mejora de NPS</strong> alineando procesos, coaching y consistencia operativa.</li>
+        <li><strong>Lanzamiento de Travel Foundations School</strong> para reducir rotación y aumentar preparación.</li>
+        <li><strong>Implementación de scorecards</strong> y gestión por cuartiles para impulsar accountability.</li>
+      </ul>
+    </div>
+  </section>
+</section>
+
+<section id="projects">
+  <h2>Proyectos / Casos</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Sistema de Crecimiento y Rendimiento</h3>
+      <p><strong>Enfoque:</strong> Escalar rendimiento manteniendo calidad y confianza del cliente.</p>
+      <p><strong>Qué hice:</strong> Gobernanza de KPIs, scorecards y rutinas de ejecución.</p>
+      <p><strong>Resultado:</strong> Alineación y accountability fortalecidos.</p>
+    </div>
+
+    <div class="card">
+      <h3>Travel Foundations School</h3>
+      <p><strong>Enfoque:</strong> Reducir rotación y aumentar filling rate.</p>
+      <p><strong>Qué hice:</strong> Diseño y despliegue de programa de formación estructurado.</p>
+      <p><strong>Resultado:</strong> Mayor estabilidad operativa.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sixsigma">
+  <h2>Six Sigma | Excelencia Operacional</h2>
+  <p class="muted">Yellow Belt Certificado • Green Belt en progreso</p>
+  <div class="card">
+    <p>Aplico metodología DMAIC para diagnosticar brechas de desempeño e implementar mejoras sostenibles.</p>
+  </div>
+</section>
+
+<section id="agilepm" class="card">
+  <h2>Agile, PM y Gestión de Riesgos</h2>
+  <p>
+    Combino entrega Agile, fundamentos de gestión de proyectos y enfoque de riesgos para garantizar ejecución predecible y alineación.
+  </p>
+</section>
+
+<section id="commercial" class="card">
+  <h2>Experiencia Comercial</h2>
+  <p>
+    Experiencia en gestión de cuentas y relaciones comerciales construida en entornos enterprise BPO,
+    traducible a Customer Success y Key Account Management.
+  </p>
+</section>
+
+<section id="contact" class="card">
+  <h2>Contacto</h2>
+  <p>✉️ Email: <a href="mailto:amonzon.p@gmail.com">amonzon.p@gmail.com</a></p>
+  <p>🔗 LinkedIn: <a href="https://www.linkedin.com/in/oscar-monzon-pineda/" target="_blank">oscar-monzon-pineda</a></p>
+  <p>📞 Teléfono: <a href="tel:+50247684580">(+502) 4768-4580</a> | <a href="https://wa.me/50247684580" target="_blank">WhatsApp</a></p>
+</section>
+
+</main>
+
+<footer>
+  © <span id="y"></span> Oscar Alejandro Monzon
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+  const sectionIds = navLinks.map(a=>a.getAttribute('href').slice(1)).filter(id=>document.getElementById(id));
+  const sections = sectionIds.map(id=>document.getElementById(id));
+
+  function setActive(id){
+    navLinks.forEach(a=>a.classList.remove('active'));
+    const link = navLinks.find(a=>a.getAttribute('href')==='#'+id);
+    if(link) link.classList.add('active');
+  }
+
+  function updateActive(){
+    const offset = 110;
+    let current='top';
+    let bestTop=-Infinity;
+    for(const s of sections){
+      const top = s.getBoundingClientRect().top;
+      if(top<=offset && top>bestTop){
+        bestTop=top;
+        current=s.id;
+      }
+    }
+    setActive(current);
+  }
+
+  setActive('top');
+  updateActive();
+  window.addEventListener('scroll', updateActive,{passive:true});
+});
+</script>
+
+</body>
+</html>
