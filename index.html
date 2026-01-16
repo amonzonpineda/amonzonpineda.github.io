@@ -244,6 +244,37 @@
       text-align: center;
       color: var(--muted);
     }
+    .lang-switch{
+  margin-left: auto;
+  display: inline-flex;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+
+.lang-pill{
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.lang-pill:hover{
+  color: var(--text);
+  border-color: rgba(56,189,248,.35);
+}
+
+.lang-pill.is-active{
+  color: var(--text);
+  background: var(--navActive);
+  border-color: var(--navActiveBorder);
+}
+    
   </style>
 </head>
 
@@ -259,6 +290,12 @@
       <a href="#agilepm">Agile, PM & Risk Management</a>
       <a href="#commercial">Commercial Experience</a>
       <a href="#contact">Contact</a>
+
+      <span class="lang-switch">
+  <a href="index.html" class="lang-pill is-active" aria-current="page">EN</a>
+  <a href="es.html" class="lang-pill">ES</a>
+</span>
+      
     </div>
   </nav>
 
@@ -308,7 +345,7 @@
         <ul>
           <li>Operations Management • Client Success • Stakeholder Management (C-level)</li>
           <li>Performance Management • Coaching Systems • RCA / Continuous Improvement</li>
-          <li>Dashboards & Reporting • Power BI • Excel / Google Sheets</li>
+          <li>Scrum Master • Yellow Belt Six Sigma • Dashboards & Reporting • Excel / Google Sheets</li>
           <li>Program Transitions • Cross-functional Leadership • Process Design</li>
         </ul>
       </section>
