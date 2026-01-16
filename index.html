@@ -482,67 +482,49 @@
   </footer>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
   const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
-  const linkById = new Map(navLinks.map(a => [a.getAttribute('href').slice(1), a]));
 
+  // Solo IDs que realmente existen
   const sectionIds = navLinks
     .map(a => a.getAttribute('href').slice(1))
     .filter(id => document.getElementById(id));
 
   const sections = sectionIds.map(id => document.getElementById(id));
 
-  const setActiveLink = (id) => {
+  function setActive(id){
     navLinks.forEach(a => a.classList.remove('active'));
-    const link = linkById.get(id);
+    const link = navLinks.find(a => a.getAttribute('href') === '#' + id);
     if (link) link.classList.add('active');
-  };
+  }
 
-  // 1) Click = activo inmediato (no dependemos del observer)
+  // Click = activo inmediato
   navLinks.forEach(a => {
     a.addEventListener('click', () => {
       const id = a.getAttribute('href').slice(1);
-      setActiveLink(id);
+      setActive(id);
     });
   });
 
-  // Default
-  setActiveLink('top');
-
-  // 2) IntersectionObserver (tolerante con secciones pequeñas)
-  let lastActive = 'top';
-
-  const observer = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter(e => e.isIntersecting)
-      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-    if (visible?.target?.id) {
-      lastActive = visible.target.id;
-      setActiveLink(lastActive);
-    }
-  }, {
-    threshold: [0.01, 0.08, 0.15],
-    rootMargin: "-20% 0px -65% 0px"
-  });
-
-  sections.forEach(s => observer.observe(s));
-
-  // 3) Fallback: si el observer no “catcha” bien, actualizamos por scroll
-  function onScrollFallback(){
-    const marker = window.scrollY + (window.innerHeight * 0.35);
-
+  // Scrollspy (robusto)
+  function updateActive(){
+    const marker = window.scrollY + 120; // ajusta si tu nav tapa más/menos
     let current = 'top';
+
     for (const s of sections) {
       if (s.offsetTop <= marker) current = s.id;
     }
-
-    if (current && current !== lastActive) {
-      lastActive = current;
-      setActiveLink(current);
-    }
+    setActive(current);
   }
 
-  window.addEventListener('scroll', onScrollFallback, { passive: true });
+  // Init
+  setActive('top');
+  updateActive();
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  window.addEventListener('resize', updateActive);
+  window.addEventListener('hashchange', updateActive);
+});
 </script>
 
 </body>
