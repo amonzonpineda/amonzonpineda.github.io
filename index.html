@@ -298,6 +298,29 @@
   background-position: 0 0, 0 0;
   background-repeat: no-repeat;
 }
+
+    .nav-sub{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 18px 10px;
+  display: flex;
+  justify-content: flex-end; /* lo manda a la derecha */
+}
+.nav-sub-link{
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.nav-sub-link:hover{
+  border-color: rgba(56,189,248,.45);
+  text-decoration: none;
+}
   </style>
 </head>
 
@@ -317,13 +340,17 @@
 <span class="lang-switch">
   <a href="index.html" class="lang-pill is-active" aria-current="page">EN</a>
   <a href="es.html" class="lang-pill">ES</a>
-
-  <a href="credentials.html" target="_blank" rel="noopener noreferrer">Credentials</a>
-
 </span>
       
     </div>
-  </nav>
+  
+  <!-- 👇 Segunda línea debajo del menú -->
+  <div class="nav-sub">
+    <a class="nav-sub-link" href="credentials.html" target="_blank" rel="noopener noreferrer">
+      Diplomas y Certificaciones →
+    </a>
+  </div>
+</nav></nav>
 
   <!-- HERO -->
   <header id="top">
