@@ -316,32 +316,37 @@
   text-decoration: none;
   font-size: 13px;
 }
-
-.nav-sub-link:hover{
-  border-color: rgba(56,189,248,.45);
-  text-decoration: none;
+/* LOGO en navbar (no estilo pill) */
+.nav a.logo-link{
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 0;
 }
+
 .logo-link{
   display:flex;
   align-items:center;
-  margin-right:10px;
+  margin-right: 10px;
 }
 
 .site-logo{
   height:34px;
   width:auto;
+  display:block;
 }
   </style>
 </head>
 
 <body>
 
-  <!-- MENU -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="#top" class="logo-link">
-  <img src="images/monzon_logo_256.png" alt="Oscar Monzón Logo" class="site-logo">
-</a>
+<!-- MENU -->
+<nav class="nav">
+  <div class="nav-inner">
+
+    <a href="#top" class="logo-link" aria-label="Home">
+      <img src="images/monzon_logo_256.png" alt="" class="site-logo">
+    </a>
       <a href="#top">↑ Home</a>
       <a href="#overview">Overview</a>
       <a href="#projects">Projects</a>
