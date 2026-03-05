@@ -355,7 +355,7 @@
   display: flex;
   align-items: center;
   margin-right: 18px;
-  isolation: isolate; /* mantiene los efectos detrás del logo */
+  isolation: isolate;
 }
 
 /* Halo suave detrás del logo */
@@ -364,71 +364,108 @@
   position:absolute;
   inset: -18px;
   border-radius: 999px;
-  background:
-    radial-gradient(circle at 40% 40%,
-      rgba(56,189,248,.28) 0%,
-      rgba(56,189,248,0) 60%);
+  background: radial-gradient(circle at 40% 40%,
+    rgba(56,189,248,.20) 0%,
+    rgba(56,189,248,0) 60%);
   filter: blur(10px);
-  opacity: .75;
+  opacity: .70;
   z-index: -1;
   transform: scale(.98);
   animation: haloPulse 7s ease-in-out infinite;
 }
 
-/* Logo: micro-float + glow premium */
+/* Logo 3D: quieto → giro lateral → quieto (cada 10s) */
 .site-logo{
   display:block;
-  height: 80px; /* ajusta si quieres 70px */
+  height: 80px;
   width:auto;
-  transform: translateZ(0);
-  filter: drop-shadow(0 0 20px rgba(56,189,248,.14));
-  animation: logoSpinPause 10s ease-in-out infinite;
+
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+
+  filter: drop-shadow(0 0 18px rgba(56,189,248,.18));
+  animation: logo3DSpinPause 10s ease-in-out infinite;
   transition: transform .35s ease, filter .35s ease;
 }
 
-/* Hover: pequeño tilt + glow más fuerte (premium) */
+/* Hover premium */
 .logo-link:hover .site-logo{
-  transform: translateY(-1px) rotate(-6deg) scale(1.03);
-  filter: drop-shadow(0 0 16px rgba(56,189,248,.45));
+  transform: perspective(800px) rotateY(-12deg) scale(1.03);
+  filter: drop-shadow(0 0 18px rgba(56,189,248,.45));
 }
 
-/* Reduce movimiento si el usuario lo pide */
+/* Reduce motion */
 @media (prefers-reduced-motion: reduce){
   .site-logo, .logo-link::before{
     animation: none !important;
   }
 }
 
-/* Animaciones sutiles */
-@keyframes logoFloat{
-  0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-3px); }
-  100% { transform: translateY(0px); }
-}
-
+/* Animaciones */
 @keyframes haloPulse{
-  0%   { opacity: .60; transform: scale(.96); }
+  0%   { opacity: .55; transform: scale(.96); }
   50%  { opacity: .95; transform: scale(1.05); }
-  100% { opacity: .60; transform: scale(.96); }
+  100% { opacity: .55; transform: scale(.96); }
 }
-@keyframes logoSpinPause{
 
-  0%{
-    transform: rotate(0deg);
-  }
+@keyframes logo3DSpinPause{
+  0%   { transform: perspective(800px) rotateY(0deg); }
+  70%  { transform: perspective(800px) rotateY(0deg); }
+  85%  { transform: perspective(800px) rotateY(360deg); }
+  100% { transform: perspective(800px) rotateY(360deg); }
+}
 
-  70%{
-    transform: rotate(0deg);
-  }
 
-  85%{
-    transform: rotate(360deg);
-  }
+/* ========= BACKGROUND GRID (siempre atrás) ========= */
 
-  100%{
-    transform: rotate(360deg);
-  }
+html::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -9999;
 
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+
+  background-size: 60px 60px;
+  opacity: 1;
+  animation: gridMove 60s linear infinite;
+}
+
+@keyframes gridMove{
+  from{ transform: translateY(0); }
+  to{ transform: translateY(60px); }
+}
+
+/* Energy scan cada 30s */
+html::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -9998;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56,189,248,0) 46%,
+    rgba(56,189,248,0.22) 50%,
+    rgba(56,189,248,0) 54%,
+    transparent 100%
+  );
+
+  opacity: 0;
+  animation: energyWave 30s linear infinite;
+}
+
+@keyframes energyWave{
+  0%   { transform: translateX(-120%); opacity: 0; }
+  6%   { opacity: .55; }
+  14%  { transform: translateX(120%); opacity: .35; }
+  20%  { opacity: 0; }
+  100% { transform: translateX(120%); opacity: 0; }
 }
   </style>
 </head>
