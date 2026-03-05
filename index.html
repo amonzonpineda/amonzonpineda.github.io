@@ -427,29 +427,66 @@
 
 }
 
-/* SAAS GRID BACKGROUND */
-
-body::after{
+/* ====== BACKGROUND GRID (siempre detrás de todo) ====== */
+html::before{
   content:"";
-  position:fixed;
-  inset:0;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -9999;
+
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;
-  z-index:-999;      /* más atrás */
-  opacity:0.9;
-  animation:gridMove 05s linear infinite;
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1.3px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1.3px);
+
+  background-size: 60px 60px;
+  opacity: 0.9;
+
+  animation: gridMove 05s linear infinite;
 }
 
-/* movimiento muy suave */
 @keyframes gridMove{
-  from{ transform:translateY(0px); }
-  to{ transform:translateY(60px); }
+  from{ transform: translateY(0); }
+  to{ transform: translateY(60px); }
 }
-    
+
+/* Mantén el contenido arriba del fondo */
+body{
+  position: relative;
+  z-index: 0;
+}
+
+/* ====== ENERGY SCAN (encima del grid, pero detrás del contenido) ====== */
+html::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -9998;
+
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56,189,248,0) 45%,
+    rgba(56,189,248,0.35) 50%,
+    rgba(56,189,248,0) 55%,
+    transparent 100%
+  );
+
+  opacity: 0;
+  animation: energyWave 30s linear infinite;
+}
+
+@keyframes energyWave{
+  0%   { transform: translateX(-120%); opacity: 0; }
+  8%   { opacity: .85; }
+  18%  { transform: translateX(120%); opacity: .55; }
+  25%  { opacity: 0; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
   </style>
+
 </head>
 
 <script>
