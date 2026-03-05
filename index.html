@@ -429,28 +429,24 @@
 
 /* SAAS GRID BACKGROUND */
 
-body::before{
+body::after{
   content:"";
   position:fixed;
   inset:0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
   background-size:60px 60px;
   pointer-events:none;
-  z-index:-1;
-  animation:gridMove 30s linear infinite;
+  z-index:-999;      /* más atrás */
+  opacity:0.9;
+  animation:gridMove 05s linear infinite;
 }
 
 /* movimiento muy suave */
-
 @keyframes gridMove{
-  from{
-    transform:translateY(0px);
-  }
-  to{
-    transform:translateY(60px);
-  }
+  from{ transform:translateY(0px); }
+  to{ transform:translateY(60px); }
 }
     
   </style>
