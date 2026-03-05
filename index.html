@@ -436,8 +436,8 @@ html::before{
   z-index: -9999;
 
   background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1.3px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1.3px);
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
 
   background-size: 60px 60px;
   opacity: 0.9;
@@ -465,11 +465,11 @@ html::after{
   z-index: -9998;
 
   background: linear-gradient(
-    90deg,
+    45deg,
     transparent 0%,
     rgba(56,189,248,0) 45%,
     rgba(56,189,248,0.35) 50%,
-    rgba(56,189,248,0) 55%,
+    rgba(56,189,248,0) 53%,
     transparent 100%
   );
 
@@ -479,9 +479,9 @@ html::after{
 
 @keyframes energyWave{
   0%   { transform: translateX(-120%); opacity: 0; }
-  8%   { opacity: .85; }
-  18%  { transform: translateX(120%); opacity: .55; }
-  25%  { opacity: 0; }
+  6%   { opacity: .55; }
+  14%  { transform: translateX(120%); opacity: .35; }
+  20%  { opacity: 0; }
   100% { transform: translateX(120%); opacity: 0; }
 }
 
